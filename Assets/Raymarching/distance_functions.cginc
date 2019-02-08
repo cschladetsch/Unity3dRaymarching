@@ -88,19 +88,28 @@ float hartverdrahtet(float3 f)
 
 float pseudo_kleinian(float3 p)
 {
-    float3 CSize = float3(0.92436,0.90756,0.92436);
-    float Size = 1.0;
+	// CJS ORIG
+    float3 CSize  = float3(0.92436,0.90756,0.92436);
+ //   float3 CSize1 = float3(0.92436,0.90756,0.92436);
+ //   float3 CSize2 = float3(0.90436,0.92756,0.90436);
+	//float t = _SinTime.w;
+	//float t2 = _SinTime.w*0.5;
+	//float3 CSize = lerp(CSize1, CSize2, t);
+
+	//float Size = 1.0 + _SinTime.w*0.2;
+	float Size = 1.2 + _SinTime.w*0.3;// *0.5;// *0.4;
     float3 C = float3(0.0,0.0,0.0);
     float DEfactor=1.;
     float3 Offset = float3(0.0,0.0,0.0);
-    float3 ap=p+1.;
+	float3 ap = p + 1.;
+	float kf = 0;// _CosTime.w*0.05f;
     for(int i=0;i<10 ;i++){
-        ap=p;
-        p=2.*clamp(p, -CSize, CSize)-p;
+        ap = p;
+        p = 2.*clamp(p, -CSize, CSize)-p;
         float r2 = dot(p,p);
-        float k = max(Size/r2,1.);
+        float k = max(Size/r2, 1.);
         p *= k;
-        DEfactor *= k + 0.05;
+        DEfactor *= k + 0.05 + kf;
         p += C;
     }
     float r = abs(0.5*abs(p.z-Offset.z)/DEfactor);

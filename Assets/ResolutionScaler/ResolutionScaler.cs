@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Camera))]
+//[RequireComponent(typeof(Camera))]
 public class ResolutionScaler : MonoBehaviour
 {
     public Camera m_maincamera;
@@ -47,7 +47,7 @@ public class ResolutionScaler : MonoBehaviour
                 (int)(cam.pixelWidth * m_resolution_scale.x),
                 (int)(cam.pixelHeight * m_resolution_scale.y),
                 32,
-                m_maincamera.hdr ? RenderTextureFormat.ARGBHalf : RenderTextureFormat.ARGB32);
+                m_maincamera.allowHDR ? RenderTextureFormat.ARGBHalf : RenderTextureFormat.ARGB32);
             m_rt.filterMode = FilterMode.Trilinear;
             m_rt.Create();
             m_maincamera.targetTexture = m_rt;
