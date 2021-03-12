@@ -20,7 +20,8 @@ public class RaymarcherHUD : MonoBehaviour
 
     void OnGUI()
     {
-        if (!m_show_hud) return;
+        if (!m_show_hud)
+            return;
 
         Raymarcher rm = GetComponent<Raymarcher>();
         Camera cam = GetComponent<Camera>();
@@ -31,7 +32,6 @@ public class RaymarcherHUD : MonoBehaviour
         {
             rm.m_enable_temporal = GUI.Toggle(new Rect(30, 80, 200, 20), rm.m_enable_temporal, "temporal marching");
         }
-
 
         rm.m_enable_glowline = GUI.Toggle(new Rect(20, 120, 200, 20), rm.m_enable_glowline, "glowline");
         {

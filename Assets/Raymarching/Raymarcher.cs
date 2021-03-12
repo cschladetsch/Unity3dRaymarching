@@ -1,28 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif // UNITY_EDITOR
 
-
-public static class RaymarcherUtils
+public static class MarchRays
 {
-    public static Mesh GenerateQuad()
+    public static Mesh MakeQuad()
     {
-        Vector3[] vertices = new Vector3[4] {
+        Vector3[] vertices = new Vector3[4]
+        {
                 new Vector3( 1.0f, 1.0f, 0.0f),
                 new Vector3(-1.0f, 1.0f, 0.0f),
                 new Vector3(-1.0f,-1.0f, 0.0f),
                 new Vector3( 1.0f,-1.0f, 0.0f),
-            };
-        int[] indices = new int[6] { 0, 1, 2, 2, 3, 0 };
-
-        Mesh r = new Mesh();
-        r.vertices = vertices;
-        r.triangles = indices;
-        return r;
+        };
+        return new Mesh { vertices = vertices, triangles = new int[6] { 0, 1, 2, 2, 3, 0 } };
     }
 
     public static Mesh GenerateDetailedQuad()
@@ -56,10 +46,11 @@ public static class RaymarcherUtils
             }
         }
 
-        Mesh r = new Mesh();
-        r.vertices = vertices;
-        r.triangles = indices;
-        return r;
+        return new Mesh
+        {
+            vertices = vertices,
+            triangles = indices
+        };
     }
 }
 
@@ -133,11 +124,11 @@ public class Raymarcher : MonoBehaviour
 
         if (m_quad == null)
         {
-            m_quad = RaymarcherUtils.GenerateQuad();
+            m_quad = MarchRays.MakeQuad();
         }
         if (m_detailed_quad == null)
         {
-            m_detailed_quad = RaymarcherUtils.GenerateDetailedQuad();
+            m_detailed_quad = MarchRays.GenerateDetailedQuad();
         }
 
         bool need_to_reflesh_command_buffer = false;

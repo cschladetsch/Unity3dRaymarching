@@ -59,7 +59,7 @@ public class ResolutionScaler : MonoBehaviour
     {
         if (m_quad == null)
         {
-            m_quad = RaymarcherUtils.GenerateQuad();
+            m_quad = MarchRays.MakeQuad();
         }
         m_material.SetPass(0);
         m_material.mainTexture = m_rt;

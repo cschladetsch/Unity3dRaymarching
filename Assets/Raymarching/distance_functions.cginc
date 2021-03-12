@@ -119,7 +119,9 @@ float pseudo_kleinian(float3 p)
 float pseudo_knightyan(float3 p)
 {
     float3 CSize = float3(0.63248,0.78632,0.875);
+    //CSize *= _SinTime.w * 0.3f;
     float DEfactor=1.;
+
     for(int i=0;i<6;i++){
         p = 2.*clamp(p, -CSize, CSize)-p;
         float k = max(0.70968/dot(p,p),1.);
