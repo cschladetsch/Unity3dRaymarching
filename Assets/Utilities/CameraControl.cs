@@ -34,8 +34,8 @@ public class CameraControl : MonoBehaviour
         }
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
-            float ry = Input.GetAxis("Mouse X") * 3.0f;
-            float rxz = Input.GetAxis("Mouse Y") * 0.25f;
+            float ry = Input.GetAxis("Mouse X") * 1.0f;
+            float rxz = Input.GetAxis("Mouse Y") * 0.05f;
             pos = Quaternion.Euler(0.0f, ry, 0) * pos;
             pos.y += rxz;
         }
