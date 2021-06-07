@@ -46,19 +46,19 @@ public class RaymarcherHUD : MonoBehaviour
         //    }
         //}
 
-        GUI.backgroundColor = Color.grey;
-        GUI.skin.button.fontSize = 60;
-        if (GUI.Button(new Rect(30, 20, 320, 80), "Next scene"))
-        {
-            rm.m_scene = (rm.m_scene + 1) % 3;
-        }
+        //GUI.backgroundColor = Color.grey;
+        //GUI.skin.button.fontSize = 60;
+        //if (GUI.Button(new Rect(30, 20, 320, 80), "Next scene"))
+        //{
+        //    rm.m_scene = (rm.m_scene + 1) % 3;
+        //}
 
-        if (GUI.Button(new Rect(30, 120, 320, 80), "Enter"))
-        {
-        }
+        //if (GUI.Button(new Rect(30, 120, 320, 80), "Enter"))
+        //{
+        //}
 
-        if (GUI.Button(new Rect(30, 230, 320, 80), "Leave"))
-        {
-        }
+        //if (GUI.Button(new Rect(30, 230, 320, 80), "Leave"))
+        //{
+        //}
     }
 }
