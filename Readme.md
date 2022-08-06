@@ -8,4 +8,6 @@ Generate GBuffer by distance function & raymarching and light by Unity's deferre
 
 Will give answers if there is any interest.
 
+It's just drawing two triangles.
+
 
