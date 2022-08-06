@@ -8,7 +8,6 @@ namespace UnityChan
 	{
 		void NextLevel ()
 		{
-			Application.LoadLevel (Application.loadedLevel + 1);
 		}
 	}
 }

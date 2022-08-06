@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace UnityStandardAssets.ImageEffects
@@ -6,10 +5,8 @@ namespace UnityStandardAssets.ImageEffects
     [ExecuteInEditMode]
     [RequireComponent (typeof(Camera))]
     [AddComponentMenu("Image Effects/Rendering/Screen Space Ambient Occlusion")]
-    public class ScreenSpaceAmbientOcclusion : MonoBehaviour
-    {
-        public enum SSAOSamples
-		{
+    public class ScreenSpaceAmbientOcclusion : MonoBehaviour {
+        public enum SSAOSamples {
             Low = 0,
             Medium = 1,
             High = 2,
@@ -30,47 +27,40 @@ namespace UnityStandardAssets.ImageEffects
 
         private bool m_Supported;
 
-        private static Material CreateMaterial (Shader shader)
-        {
+        private static Material CreateMaterial(Shader shader) {
             if (!shader)
                 return null;
-            Material m = new Material (shader);
-            m.hideFlags = HideFlags.HideAndDontSave;
-            return m;
+
+            return new Material(shader) {
+                hideFlags = HideFlags.HideAndDontSave
+            };
         }
-        private static void DestroyMaterial (Material mat)
-        {
-            if (mat)
-            {
+
+        private static void DestroyMaterial(Material mat) {
+            if (mat) {
                 DestroyImmediate (mat);
-                mat = null;
             }
         }
 
 
-        void OnDisable()
-        {
-            DestroyMaterial (m_SSAOMaterial);
+        void OnDisable() {
+            DestroyMaterial(m_SSAOMaterial);
         }
 
-        void Start()
-        {
-            if (!SystemInfo.supportsImageEffects || !SystemInfo.SupportsRenderTextureFormat (RenderTextureFormat.Depth))
-            {
+        void Start() {
+            if (!SystemInfo.SupportsRenderTextureFormat (RenderTextureFormat.Depth)) {
                 m_Supported = false;
                 enabled = false;
                 return;
             }
 
-            CreateMaterials ();
-            if (!m_SSAOMaterial || m_SSAOMaterial.passCount != 5)
-            {
+            CreateMaterials();
+
+            if (!m_SSAOMaterial || m_SSAOMaterial.passCount != 5) {
                 m_Supported = false;
                 enabled = false;
                 return;
             }
-
-            //CreateRandomTable (26, 0.2f);
 
             m_Supported = true;
         }
@@ -81,9 +71,8 @@ namespace UnityStandardAssets.ImageEffects
 
         private void CreateMaterials ()
         {
-            if (!m_SSAOMaterial && m_SSAOShader.isSupported)
-            {
-                m_SSAOMaterial = CreateMaterial (m_SSAOShader);
+            if (!m_SSAOMaterial && m_SSAOShader.isSupported) {
+                m_SSAOMaterial = CreateMaterial(m_SSAOShader);
                 m_SSAOMaterial.SetTexture ("_RandomTexture", m_RandomTexture);
             }
         }
@@ -155,45 +144,5 @@ namespace UnityStandardAssets.ImageEffects
 
             RenderTexture.ReleaseTemporary (rtAO);
         }
-
-        /*
-		private void CreateRandomTable (int count, float minLength)
-		{
-			Random.seed = 1337;
-			Vector3[] samples = new Vector3[count];
-			// initial samples
-			for (int i = 0; i < count; ++i)
-				samples[i] = Random.onUnitSphere;
-			// energy minimization: push samples away from others
-			int iterations = 100;
-			while (iterations-- > 0) {
-				for (int i = 0; i < count; ++i) {
-					Vector3 vec = samples[i];
-					Vector3 res = Vector3.zero;
-					// minimize with other samples
-					for (int j = 0; j < count; ++j) {
-						Vector3 force = vec - samples[j];
-						float fac = Vector3.Dot (force, force);
-						if (fac > 0.00001f)
-							res += force * (1.0f / fac);
-					}
-					samples[i] = (samples[i] + res * 0.5f).normalized;
-				}
-			}
-			// now scale samples between minLength and 1.0
-			for (int i = 0; i < count; ++i) {
-				samples[i] = samples[i] * Random.Range (minLength, 1.0f);
-			}
-
-			string table = string.Format ("#define SAMPLE_COUNT {0}\n", count);
-			table += "const float3 RAND_SAMPLES[SAMPLE_COUNT] = {\n";
-			for (int i = 0; i < count; ++i) {
-				Vector3 v = samples[i];
-				table += string.Format("\tfloat3({0},{1},{2}),\n", v.x, v.y, v.z);
-			}
-			table += "};\n";
-			Debug.Log (table);
-		}
-		*/
     }
 }
