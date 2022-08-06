@@ -13,6 +13,7 @@ Builds/
 Library/
 Temp/
 Log/
+Logs/
 obj/
 
 *.log
