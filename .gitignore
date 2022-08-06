@@ -1,5 +1,8 @@
 
 .vs/
+*.vsconfig
+*.user
+
 
 *.sln
 *.csproj
