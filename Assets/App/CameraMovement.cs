@@ -6,8 +6,11 @@ namespace App {
 
         private Global Global;
 
-        void Update() {
+        private void Awake() {
             Global = FindObjectOfType<Global>();
+        }
+
+        private void Update() {
             MoveCamera();
             RotateCamera();
         }
