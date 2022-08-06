@@ -1,8 +1,19 @@
+
+.vs/
+
+*.sln
+*.csproj
+*.tmp
+
+*.key
+*.keys
+
+
 Builds/
 Library/
 Temp/
+Log/
 obj/
-.vs/
 
 *.log
 
