@@ -14,6 +14,8 @@ It's just drawing two triangles.
 
 I've just finished porting it to Unity 2020.3.0f1.
 
+![image](doc/ss1.jpg)
+
 ## Scenes
 
 There are two main scenes:
